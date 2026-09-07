@@ -1,0 +1,178 @@
+\usepackage{fancyhdr, fontspec, amsmath, anyfontsize, float, geometry, tabularx, graphicx, etoolbox, mdframed, lastpage, multicol, hyperref, lipsum} 
+\usepackage[export]{adjustbox}
+\usepackage[portuguese]{babel}
+\usepackage[table]{xcolor}
+
+%------------------------------------------------------------------
+%                            MARGENS
+%------------------------------------------------------------------
+
+\geometry{
+ a4paper,
+ left=25.4mm,
+ right=26.5mm,
+ top=2.54cm,
+ bottom=25.4mm,
+ %showframe=true
+ }
+
+%------------------------------------------------------------------
+%                            HEADER
+%------------------------------------------------------------------
+
+\pagestyle{fancy}
+\setlength{\headheight}{2.3cm}
+\setlength{\headsep}{0.7cm}
+\setlength{\footskip}{12pt}
+\setlength{\textheight}{23cm}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhf{}
+\fancyhead[C]{
+    \tnr \fontsize{14pt}{11.5}\selectfont UNIVERSIDADE FEDERAL DA BAHIA \\ 
+    \tnr \fontsize{11pt}{11.5}\selectfont PRÓ-REITORIA DE PESQUISA, CRIAÇÃO E INOVAÇÃO\\
+    \tnr \fontsize{10pt}{11.5}\selectfont\tnr COORDENAÇÃO DE INICIAÇÃO A PESQUISA, CRIAÇÃO E INOVAÇÃO}
+\fancyhead[L]{\includegraphics[scale=0.3, height=5\baselineskip]{Imagens/UFBA LOGO.jpg}}
+\fancyhead[R]{\includegraphics[scale=0.3, height=4\baselineskip]{Imagens/PIBIC UFBA.png}}
+\fancyfoot[R]{\tnr\fontsize{12pt}{11.5}\selectfont Pág. \thepage/\pageref{LastPage}}
+\fancyfoot[L]{\textcolor{cinzarodape}{\fontsize{7pt}{11.5pt}\selectfont Plano de Trabalho do Estudante}}
+
+%------------------------------------------------------------------
+%                            FONTES
+%------------------------------------------------------------------
+
+\setmainfont[BoldItalicFont = BICali.ttf, ItalicFont = BICali.ttf , BoldFont = Bcali.ttf]{Calibri.ttf}
+\IfFontExistsTF{Times New Roman}
+    {\newfontfamily{\tnr}{Times New Roman}}
+    {\IfFontExistsTF{Tinos}
+        {\newfontfamily{\tnr}{Tinos}}
+        {\newfontfamily{\tnr}{TeX Gyre Termes}}}
+
+%------------------------------------------------------------------
+%                           TABELAS
+%------------------------------------------------------------------
+
+\definecolor{cinza}{HTML}{E4E4E4} %Cinza
+\definecolor{cinzarodape}{HTML}{A6A6A6} %Cinza fonte rodapé
+\newcommand{\specialcell}[2][c]{% Pular linha na tabela
+    \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+\newcolumntype{Y}{>{\centering\arraybackslash}X} %Coluna alinhada e preenchimento da mergem
+\renewcommand{\arraystretch}{1.7}
+
+
+%------------------------------------------------------------------
+%                  FORMULARIOS DA FOLHA DE ROSTO
+%------------------------------------------------------------------
+
+\newcommand{\edital}[1]{
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|Y|}
+\hline
+\vspace{-19pt}\cellcolor{cinza}\specialcell{\fontsize{10pt}{11.5}\selectfont EDITAL / PROGRAMA \\[-13pt] 
+\fontsize{8pt}{11.5}\selectfont[Digitar o nome e número do edital – Programa (ver Edital)]}\\
+\hline
+\tnr\fontsize{12pt}{11.5}\textcolor{blue}{#1}\\ \hline
+\end{tabularx}
+\end{table}
+}
+
+\newcommand{\nomeestudante}[1]{
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|Y|}
+\hline
+\vspace{-19pt}\cellcolor{cinza}\specialcell{\fontsize{10pt}{11.5}\selectfont ESTUDANTE IC\\[-13pt] 
+\fontsize{8pt}{11.5}\selectfont(Digitar nome completo, sem abreviações).} \\ \hline
+\tnr\fontsize{12pt}{11.5}\textcolor{blue}{#1}  \\ \hline
+\end{tabularx}
+\end{table}
+}
+
+\newcommand{\planodetrabalho}[1]{
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|Y|}
+\hline
+\vspace{-19pt}\cellcolor{cinza}\specialcell{\fontsize{10pt}{11.5}\selectfont Título do Plano de Trabalho do Estudante\\[-13pt] \fontsize{8pt}{11.5}\selectfont(Digitar o título completo, sem abreviações, exatamente igual ao título do plano de trabalho aprovado).} \\ \hline
+\tnr\fontsize{12pt}{11.5}\textcolor{blue}{#1}   \\ \hline
+\end{tabularx}
+\end{table}
+}
+
+\newcommand{\nomeorientador}[1]{
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|Y|}
+\hline
+\vspace{-19pt}\cellcolor{cinza}\specialcell{\fontsize{10pt}{11.5}\selectfont ORIENTADOR (A) \\ [-13pt] \fontsize{8pt}{11.5}\selectfont(Digitar nome completo, sem abreviações).} \\ \hline
+\tnr\fontsize{12pt}{11.5}\textcolor{blue}{#1}   \\ \hline
+\end{tabularx}
+\end{table}
+}
+
+\newcommand{\titulodoprojeto}[1]{
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|Y|}
+\hline
+\vspace{-19pt}\cellcolor{cinza}\specialcell{\fontsize{10pt}{11.5}\selectfont Título do Projeto do Orientador (A) \\[-13pt]  \fontsize{8pt}{11.5}\selectfont(Digitar o título completo, sem abreviações, exatamente igual ao título do projeto do orientador(a)).} \\ \hline
+\tnr\fontsize{12pt}{11.5}\textcolor{blue}{#1}   \\ \hline
+\end{tabularx}
+\end{table}
+}
+
+\newcommand{\ano}[1]{
+\fontsize{10pt}{11.5}\selectfont Salvador, Bahia\\
+\fontsize{10pt}{11.5}\selectfont \textbf{Agosto / #1}
+}
+
+%------------------------------------------------------------------
+%                       SESSÃO DE DISCUSSÃO
+%------------------------------------------------------------------
+
+\newenvironment{caixa}[1][]{
+        \par \medskip
+        {\textbf{#1}}
+        \par
+        \begin{mdframed}[
+            backgroundcolor=white,
+            innertopmargin=1em,
+            innerbottommargin=1em,
+            innerrightmargin=1em,
+            innerleftmargin=1em,
+            leftmargin = 1em,
+            rightmargin = 1em,
+            fontcolor=blue
+        ]
+    }
+    {
+        \end{mdframed}
+    }
+
+%------------------------------------------------------------------
+%                            FECHAMENTO
+%------------------------------------------------------------------
+
+\newcommand{\fechamento}[3]{
+\vspace{2cm}
+\noindent\fontsize{12pt}{1pt}\selectfont Salvador, \textcolor{blue}{#1} de \textcolor{blue}{#2 de #3.} 
+\vspace{2cm}
+\begin{center}
+\begin{tabular}{c@{\hspace{1.5cm}}c}
+  \makebox[7cm]{\hrulefill} & \makebox[7cm]{\hrulefill} \\
+  \tnr \fontsize{12pt}{1pt}\selectfont Estudante & \tnr \fontsize{12pt}{1pt}\selectfont Orientador (a) \\
+\end{tabular}
+\end{center}
+\vspace{1cm}
+
+\fbox{
+  \begin{minipage}{0.35\textwidth}
+    \tnr \fontsize{9pt}{1pt}\selectfont Secretaria do Programa \\
+    \tnr \fontsize{9pt}{1pt}\selectfont Rua Basílio da Gama, 06. Canela. \\
+    \tnr \fontsize{9pt}{1pt}\selectfont Salvador - BA. 40.110-040. \\
+    \tnr \fontsize{9pt}{1pt}\selectfont Tel.: 71 3283-7968 / 3283-7970 \\
+    \tnr \fontsize{9pt}{1pt}\selectfont E-mail: \fontsize{12pt}{1pt}\selectfont \href{mailto:pibic@ufba.br}{pibic@ufba.br}
+  \end{minipage}
+}
+\vspace{4cm}
+}
