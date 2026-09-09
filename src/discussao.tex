@@ -1,0 +1,56 @@
+Os estudos desenvolvidos no projeto tiveram como eixo a compreensão de resultados da Combinatória Extremal e da Teoria de Ramsey.  Resultados esses, que abordam condições que garantem a existência de determinadas subestruturas tanto em grafos quanto em estruturas algebricas sob determinadas condições. 
+
+\medskip
+\noindent\textbf{Teorema de Turán.}
+Uma questão central da Teoria Extremal dos Grafos consiste em determinar o maior número de arestas que um grafo pode ter sem conter um subgrafo completo. Denotamos por $T_r(n)$ o grafo $r$-partido completo com $n$ vértices cujas partes que possuem tamanhos mais iguais possível, e por $t_r(n)$ seu número de arestas. Nesse grafo, há todas as arestas entre partes distintas e nenhuma aresta dentro de uma mesma parte.
+
+\smallskip
+\noindent\textbf{Teorema 1 (Turán).} \textit{Sejam $n,r\geq 1$ inteiros e $G$ um grafo simples com $n$ vértices que não contém uma cópia de $K_{r+1}$. Então
+\[
+    e(G)\leq t_r(n),
+\]
+com igualdade se, e somente se, $G$ é isomorfo a $T_r(n)$.}
+
+Em particular, obtém-se a desigualdade
+\[
+    e(G)\leq \left(1-\frac{1}{r}\right)\frac{n^2}{2}.
+\]
+Quando $r$ divide $n$, o lado direito coincide com $t_r(n)$. O caso $r=2$ recupera o Teorema de Mantel, segundo o qual um grafo sem triângulos possui, no máximo, $\lfloor n^2/4\rfloor$ arestas. O resultado de Turán mostra que a exclusão de uma clique impõe uma restrição quantitativa ao número de arestas e também determina a estrutura dos grafos que atingem o máximo. Assim, ultrapassar $t_r(n)$ arestas torna inevitável a presença de um $K_{r+1}$ \cite[Seção 3.1]{impa}.
+
+\medskip
+\noindent\textbf{Teorema de Ramsey 1930.}
+A Teoria de Ramsey considera outra condição para a existência de subestruturas: o tamanho de uma estrutura cujos elementos são distribuídos em um número fixo de classes. No contexto dos grafos, essas classes são representadas por cores atribuídas às arestas, sem exigir que arestas incidentes recebam cores distintas.
+
+\smallskip
+\noindent\textbf{Teorema 2 (Ramsey).} \textit{Para quaisquer inteiros $k\geq 2$ e $r\geq 1$, existe um inteiro $n$ tal que toda coloração das arestas de $K_n$ com $r$ cores contém uma cópia monocromática de $K_k$.}
+
+A prova do livro utiliza aplicações sucessivas do Princípio da Casa dos Pombos. A partir de um vértice, seleciona-se um conjunto de vizinhos ligados a ele por arestas de uma mesma cor. Repetindo esse procedimento dentro dos conjuntos obtidos, constrói-se uma sequência de vértices na qual as arestas de cada vértice para os vértices posteriores têm uma cor fixa. Para $n$ suficientemente grande, uma nova aplicação do princípio permite selecionar $k$ vértices que formam uma clique monocromática \cite[Teorema 4.0.2]{impa}. Esse argumento evidencia como uma ferramenta elementar de contagem pode garantir uma estrutura global organizada, mesmo quando a coloração inicial é arbitrária.
+
+\medskip
+\noindent\textbf{Números de Ramsey.}
+O teorema garante a existência de um tamanho suficiente, mas também motiva a busca pelo menor tamanho com essa propriedade. Para inteiros $s,t\geq 2$, define-se $R(s,t)$ como o menor inteiro $n$ tal que toda coloração das arestas de $K_n$ com as cores vermelho e azul contém um $K_s$ vermelho ou um $K_t$ azul. No caso diagonal, escreve-se $R(k)=R(k,k)$, conforme a notação do livro \cite[Seção 4.1]{impa}.
+
+Um exemplo é $R(3,3)=6$. Em qualquer coloração de $K_6$ com duas cores, um vértice possui pelo menos três arestas incidentes de uma mesma cor. Se essa cor é vermelha, uma aresta vermelha entre os três vizinhos completa um triângulo vermelho; se nenhuma dessas arestas é vermelha, os três vizinhos formam um triângulo azul. Por outro lado, em $K_5$, podemos colorir de vermelho as arestas de um ciclo de comprimento cinco e de azul as demais. Como as arestas azuis também formam um ciclo de comprimento cinco, não há triângulo monocromático. Os dois argumentos estabelecem, respectivamente, os limites superior e inferior necessários para determinar o valor exato.
+
+Esse exemplo distingue duas tarefas recorrentes no estudo dos números de Ramsey: provar que toda coloração de uma estrutura suficientemente grande contém a configuração desejada e construir uma coloração menor que a evite. Para obter estimativas gerais, uma ferramenta fundamental é a recorrência
+\[
+    R(s,t)\leq R(s-1,t)+R(s,t-1), \qquad s,t\geq 2,
+\]
+adotando-se $R(1,t)=R(s,1)=1$. De fato, em um grafo completo com $R(s-1,t)+R(s,t-1)$ vértices, qualquer vértice possui pelo menos $R(s-1,t)$ vizinhos vermelhos ou pelo menos $R(s,t-1)$ vizinhos azuis. Aplicando a definição de número de Ramsey à vizinhança correspondente, obtém-se a clique desejada, eventualmente acrescentando o vértice escolhido \cite[Lema 4.1.3]{impa}.
+
+\medskip
+\noindent\textbf{Erd\H{o}s--Szekeres: limites para os números de Ramsey.}
+A recorrência anterior permite transformar a garantia de existência em uma estimativa explícita.
+
+\smallskip
+\noindent\textbf{Teorema 3 (Erd\H{o}s--Szekeres).} \textit{Para quaisquer inteiros $s,t\geq 2$,
+\[
+    R(s,t)\leq \binom{s+t-2}{s-1}.
+\]}
+
+A prova combina indução em $s+t$ com a identidade de Pascal para os coeficientes binomiais. No caso $s=t=k$, segue que
+\[
+    R(k)\leq \binom{2k-2}{k-1}.
+\]
+Esse resultado fornece um limite superior geral, embora não determine necessariamente o valor exato de $R(k)$. Seu estudo permite relacionar o raciocínio indutivo a identidades de contagem, mostrando como a análise das vizinhanças de um único vértice produz estimativas para todo o grafo \cite[Teoremas 4.1.2 e 4.1.4]{impa}.
+
